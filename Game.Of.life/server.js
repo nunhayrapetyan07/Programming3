@@ -64,7 +64,7 @@ function matrixGenerator(matrixSize,grassCount,grassEaterCount,predatorCount,dra
 
     return matrix
 }
-let matrix = matrixGenerator(30,35,20,15,5,5)
+matrix = matrixGenerator(30,35,20,15,5,5)
 io.sockets.emit("send matrix",matrix)
 
 ////character arrays
@@ -80,4 +80,56 @@ grassArr=[]
  let Predator = require("./predator")
  let Eater = require("./eater")
  let Dragon = require("./dragon")
- 
+
+ /////
+
+ function createObject(matrix){
+    for(let y=0;y<matrix.length;y++){
+        for(let x=0;x<matrix[y].length;x++){
+            if(matrix[y][x]==1){
+                let grass=new Grass(x,y) 
+                grassArr.push(grass)         
+             }else if(matrix[y][x]==2){
+                let grEat=new GrassEater(x,y)
+                grassEaterArr.push(grEat) 
+             }else if(matrix[y][x]==3){
+                 let pred=new Predator(x,y)
+                 predatorArr.push(pred)
+             }else if(matrix[y][x]==4){
+                let dragon=new Dragon(x,y)
+                dragonArr.push(dragon)
+            }else if(matrix[y][x]==5){
+                let eater=new Eater(x,y)
+                eaterArr.push(eater)
+            }
+        }
+    }
+    io.sockets.emit("send matrix",matrix)
+
+ }
+ function game(){
+    for(let i in grassArr){
+        grassArr[i].mul()
+    }
+    for(let i in grassEaterArr){
+        grassEaterArr[i].eat()
+    }
+    for(let i in predatorArr){
+        predatorArr[i].eat()
+    }
+    for(let i in dragonArr){
+        dragonArr[i].eat()
+    }
+    for(let i in eaterArr){
+        eaterArr[i].eat()
+    }
+    io.sockets.emit("send matrix",matrix)
+
+ }
+ setInterval(game,500)
+
+ ////
+
+ io.on("connection",function(){
+     createObject(matrix)
+ })
