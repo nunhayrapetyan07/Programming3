@@ -143,6 +143,63 @@ grassArr=[]
      io.sockets.emit("send matrix",matrix)
     }
 
+    function AddGrassEater(){
+        for(let i=0;i<7;i++){
+           var x = Math.floor(Math.random() * matrix.length)
+           var y = Math.floor(Math.random() * matrix.length)
+   
+           if(matrix[y][x]==0){
+               matrix[y][x]=2
+               let grassEater=new GrassEater(x,y)
+               grassEaterArr.push(grassEater)
+           }
+        } 
+        io.sockets.emit("send matrix",matrix)
+       }
+
+       function AddPredator(){
+        for(let i=0;i<7;i++){
+           var x = Math.floor(Math.random() * matrix.length)
+           var y = Math.floor(Math.random() * matrix.length)
+   
+           if(matrix[y][x]==0){
+               matrix[y][x]=3
+               let predator=new Predator(x,y)
+               predatorArr.push(predator)
+           }
+        } 
+        io.sockets.emit("send matrix",matrix)
+       }
+
+       function AddDragon(){
+        for(let i=0;i<7;i++){
+           var x = Math.floor(Math.random() * matrix.length)
+           var y = Math.floor(Math.random() * matrix.length)
+   
+           if(matrix[y][x]==0){
+               matrix[y][x]=4
+               let dragon=new Dragon(x,y)
+               dragonArr.push(dragon)
+           }
+        } 
+        io.sockets.emit("send matrix",matrix)
+       }
+
+       function AddEater(){
+        for(let i=0;i<7;i++){
+           var x = Math.floor(Math.random() * matrix.length)
+           var y = Math.floor(Math.random() * matrix.length)
+   
+           if(matrix[y][x]==0){
+               matrix[y][x]=5
+               let eater=new Eater(x,y)
+               eaterArr.push(eater)
+           }
+        } 
+        io.sockets.emit("send matrix",matrix)
+       }
+
+
  ////statistika
  var statistics={
      
