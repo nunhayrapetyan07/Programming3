@@ -220,7 +220,23 @@ grassArr=[]
  io.on("connection",function(socket){
      createObject(matrix)
      socket.on("addGrass",AddGrass)
+     socket.on("addGrassEater",AddGrassEater)
+     socket.on("addPredator",AddPredator)
+     socket.on("addDragon",AddDragon)
+     socket.on("addEater",AddEater)
  })
  function AddGrass(){
      socket.emit("addGrass")
  }
+ function AddGrassEater(){
+    socket.emit("addGrassEater")
+}
+function AddPredator(){
+    socket.emit("addPredator")
+}
+function AddDragon(){
+    socket.emit("addDragon")
+}
+function AddEater(){
+    socket.emit("addEater")
+}
