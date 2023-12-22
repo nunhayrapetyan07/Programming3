@@ -4,6 +4,7 @@ var server = require('http').Server(app);
 var io = require('socket.io')(server);
 var fs = require("fs");
 
+
 app.use(express.static("."));
 
 app.get('/',function (req,res){
@@ -199,6 +200,30 @@ grassArr=[]
         io.sockets.emit("send matrix",matrix)
        }
 
+       ///exanakner
+
+       let weath;
+
+    function Spring() {
+        weath = "spring";
+        io.sockets.emit('Spring', weath);
+    }
+    
+    function Summer() {
+        weath= "summer";
+        io.sockets.emit('Summer', weath);
+     }
+     
+     function Autumn() {
+         weath = "autumn";
+         io.sockets.emit('Autumn', weath);
+     }
+     
+     function Winter() {
+         weath = "winter";
+         io.sockets.emit('Winter', weath);
+     }
+       
 
  ////statistika
  var statistics={
@@ -224,19 +249,9 @@ grassArr=[]
      socket.on("addPredator",AddPredator)
      socket.on("addDragon",AddDragon)
      socket.on("addEater",AddEater)
+     
+     socket.on("spring", Spring);
+    socket.on("summer", Summer);
+    socket.on("autumn", Autumn);
+    socket.on("winter", Winter);
  })
- function AddGrass(){
-     socket.emit("addGrass")
- }
- function AddGrassEater(){
-    socket.emit("addGrassEater")
-}
-function AddPredator(){
-    socket.emit("addPredator")
-}
-function AddDragon(){
-    socket.emit("addDragon")
-}
-function AddEater(){
-    socket.emit("addEater")
-}
