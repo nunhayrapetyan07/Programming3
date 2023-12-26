@@ -207,21 +207,23 @@ grassArr=[]
     function Spring() {
         weath = "spring";
         io.sockets.emit('Spring', weath);
+
     }
     
     function Summer() {
         weath= "summer";
-        io.sockets.emit('Summer', weath);
+        io.sockets.emit("Summer", weath);
      }
      
      function Autumn() {
          weath = "autumn";
-         io.sockets.emit('Autumn', weath);
+         io.sockets.emit("Autumn", weath);
      }
      
      function Winter() {
          weath = "winter";
-         io.sockets.emit('Winter', weath);
+         console.log("sffsfdfdsfdsfgsdfgdsfgdsfdsfdsfs");
+         io.sockets.emit("Winter", weath);
      }
        
 
@@ -238,7 +240,7 @@ grassArr=[]
 
 
      fs.writeFile("statistics.json", JSON.stringify(statistics) ,function(){
-         console.log("game of life statistics");
+        //  console.log("game of life statistics");
     })
 },1000)
 
